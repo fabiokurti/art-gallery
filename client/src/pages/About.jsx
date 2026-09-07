@@ -17,7 +17,13 @@ export default function About() {
   return (
     <>
       <section className="about-hero">
-        <img src="/works/horizon.jpg" alt="" />
+        <img
+          src="/media/horizon.jpg"
+          alt=""
+          onError={(event) => {
+            event.currentTarget.style.display = "none";
+          }}
+        />
         <p className="about-quote">{localize(artist?.statement) || t("home.statement")}</p>
       </section>
       <section className="about-copy">

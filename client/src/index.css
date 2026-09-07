@@ -1013,11 +1013,11 @@ textarea {
 .about-quote {
   position: relative;
   z-index: 1;
-  font-size: clamp(1.7rem, 3.6vw, 3rem);
+  font-size: clamp(1.55rem, 3.2vw, 2.7rem);
   font-weight: 700;
-  line-height: 1.24;
+  line-height: 1.28;
   text-align: center;
-  max-width: 22ch;
+  max-width: 28ch;
   padding: 0 6vw;
   animation: rise 1.2s cubic-bezier(0.22, 1, 0.36, 1) 0.2s both;
 }
