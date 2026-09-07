@@ -176,6 +176,13 @@ textarea {
   color: #fff;
 }
 
+.nav.is-hero.is-lifted {
+  background: var(--nav-bg);
+  backdrop-filter: blur(14px);
+  box-shadow: 0 1px 0 var(--line);
+  color: var(--ink);
+}
+
 .nav-lead {
   grid-area: lead;
   display: flex;

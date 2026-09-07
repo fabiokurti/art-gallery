@@ -24,7 +24,7 @@ export default function Layout() {
   const [menuOpen, setMenuOpen] = useState(false);
   const onAbout = pathname.startsWith("/about");
   const onHome = pathname === "/";
-  const heroMode = (onAbout || onHome) && !pastHero && !menuOpen;
+  const heroMode = (onAbout || onHome) && !pastHero && !lifted && !menuOpen;
 
   useEffect(() => {
     getArtist().then(setArtist).catch(() => {});
@@ -98,16 +98,27 @@ export default function Layout() {
       // a real swipe up that should bring the header back.
       if (Math.abs(delta) < 4) return;
 
-      travel = Math.max(-160, Math.min(160, travel + delta));
+      // Only count the direction that can change the current state. Extra
+      // scroll down while hidden used to stack up and block the next reveal.
+      // Opposite ticks must not wipe progress — phones mix +/− during a swipe.
+      if (isCollapsed) {
+        if (delta > 0) return;
+        travel += delta;
+        if (travel < -32) {
+          travel = 0;
+          isCollapsed = false;
+          setCollapsed(false);
+        }
+        return;
+      }
 
-      if (travel > 48 && !isCollapsed) {
+      if (delta < 0) return;
+
+      travel += delta;
+      if (travel > 48) {
         travel = 0;
         isCollapsed = true;
         setCollapsed(true);
-      } else if (travel < -32 && isCollapsed) {
-        travel = 0;
-        isCollapsed = false;
-        setCollapsed(false);
       }
     }
 
