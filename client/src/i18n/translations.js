@@ -24,7 +24,10 @@ export const translations = {
     "home.openForViewings": "open for viewings",
     "home.selected": "Selected",
     "home.aFewPaintings": "A few paintings",
+    "home.selectedLede": "Hearts, figures and the sea — a first look at the studio.",
     "home.allWorks": "All works →",
+    "home.nowShowing": "On the wall",
+    "home.fromTheCoast": "from the coast to the studio",
 
     "works.title": "Paintings",
     "works.lede": "Figures, hearts and horizons. Click any painting to see it larger.",
@@ -127,7 +130,10 @@ export const translations = {
     "home.openForViewings": "hapur për vizita",
     "home.selected": "Përzgjedhje",
     "home.aFewPaintings": "Disa piktura",
+    "home.selectedLede": "Zemra, figura dhe deti — një vështrim i parë i studios.",
     "home.allWorks": "Të gjitha punët →",
+    "home.nowShowing": "Në mur",
+    "home.fromTheCoast": "nga bregu te studioja",
 
     "works.title": "Piktura",
     "works.lede": "Figura, zemra dhe horizonte. Klikoni një pikturë për ta shikuar më të madhe.",
@@ -231,7 +237,10 @@ export const translations = {
     "home.openForViewings": "aperto per visite",
     "home.selected": "Selezione",
     "home.aFewPaintings": "Alcuni dipinti",
+    "home.selectedLede": "Cuori, figure e il mare — uno sguardo allo studio.",
     "home.allWorks": "Tutte le opere →",
+    "home.nowShowing": "In mostra",
+    "home.fromTheCoast": "dalla costa allo studio",
 
     "works.title": "Dipinti",
     "works.lede": "Figure, cuori e orizzonti. Clicca un dipinto per vederlo più grande.",
