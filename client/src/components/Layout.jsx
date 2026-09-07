@@ -5,10 +5,9 @@ import { useI18n } from "../i18n/I18nProvider.jsx";
 import BackToTop from "./BackToTop.jsx";
 import ContactBlock from "./ContactBlock.jsx";
 import Footer from "./Footer.jsx";
-import LangSwitcher from "./LangSwitcher.jsx";
 import ScrollProgress from "./ScrollProgress.jsx";
 import ScrollToTop from "./ScrollToTop.jsx";
-import ThemeToggle from "./ThemeToggle.jsx";
+import SettingsMenu from "./SettingsMenu.jsx";
 
 function scrollToContact(event) {
   event.preventDefault();
@@ -22,8 +21,10 @@ export default function Layout() {
   const [lifted, setLifted] = useState(false);
   const [collapsed, setCollapsed] = useState(false);
   const [pastHero, setPastHero] = useState(false);
+  const [menuOpen, setMenuOpen] = useState(false);
   const onAbout = pathname.startsWith("/about");
-  const heroMode = onAbout && !pastHero;
+  const onHome = pathname === "/";
+  const heroMode = (onAbout || onHome) && !pastHero && !menuOpen;
 
   useEffect(() => {
     getArtist().then(setArtist).catch(() => {});
@@ -32,7 +33,22 @@ export default function Layout() {
   useEffect(() => {
     setCollapsed(false);
     setPastHero(false);
+    setMenuOpen(false);
   }, [pathname]);
+
+  useEffect(() => {
+    document.body.style.overflow = menuOpen ? "hidden" : "";
+
+    function onKey(event) {
+      if (event.key === "Escape") setMenuOpen(false);
+    }
+
+    if (menuOpen) window.addEventListener("keydown", onKey);
+    return () => {
+      document.body.style.overflow = "";
+      window.removeEventListener("keydown", onKey);
+    };
+  }, [menuOpen]);
 
   useEffect(() => {
     let frame = 0;
@@ -117,61 +133,87 @@ export default function Layout() {
   }, [pathname]);
 
   return (
-    <div className={`site ${onAbout ? "site-about" : ""}`}>
+    <div className={`site ${onAbout || onHome ? "site-flush" : ""}`}>
       <ScrollToTop />
       <ScrollProgress />
 
       <header
         className={`nav ${heroMode ? "is-hero" : ""} ${lifted ? "is-lifted" : ""} ${
-          collapsed ? "is-hidden" : ""
+          collapsed && !menuOpen ? "is-hidden" : ""
         }`}
       >
-        <nav className="nav-menu">
-          <ul className="nav-links">
-            <li>
-              <NavLink to="/works">{t("nav.works")}</NavLink>
-            </li>
-            <li>
-              <NavLink to="/about">{t("nav.about")}</NavLink>
-            </li>
-            <li>
-              <a href="#contact" onClick={scrollToContact}>
-                {t("nav.contacts")}
-              </a>
-            </li>
-          </ul>
-        </nav>
+        <div className="nav-lead">
+          <button
+            type="button"
+            className={`menu-btn ${menuOpen ? "is-open" : ""}`}
+            aria-label={menuOpen ? t("a11y.closeMenu") : t("a11y.menu")}
+            aria-expanded={menuOpen}
+            onClick={() => setMenuOpen((open) => !open)}
+          >
+            <i />
+            <i />
+            <i />
+          </button>
+          <nav className="nav-menu">
+            <ul className="nav-links">
+              <li>
+                <NavLink to="/works">{t("nav.works")}</NavLink>
+              </li>
+              <li>
+                <NavLink to="/about">{t("nav.about")}</NavLink>
+              </li>
+              <li>
+                <a href="#contact" onClick={scrollToContact}>
+                  {t("nav.contacts")}
+                </a>
+              </li>
+            </ul>
+          </nav>
+        </div>
 
         <NavLink to="/" className="logo">
           <span>Marsila Bitri Art</span>
         </NavLink>
 
         <div className="nav-actions">
-          <LangSwitcher />
-          <a
-            className="social"
-            href={artist?.instagram || "https://instagram.com/"}
-            aria-label="Instagram"
-            target="_blank"
-            rel="noreferrer"
-          >
-            <svg viewBox="0 0 24 24">
-              <path d="M7 3h10a4 4 0 0 1 4 4v10a4 4 0 0 1-4 4H7a4 4 0 0 1-4-4V7a4 4 0 0 1 4-4zm5 5.2A3.8 3.8 0 1 0 15.8 12 3.8 3.8 0 0 0 12 8.2zm5.15-2.35a.9.9 0 1 0 .9.9.9.9 0 0 0-.9-.9zM12 9.5A2.5 2.5 0 1 1 9.5 12 2.5 2.5 0 0 1 12 9.5z" />
-            </svg>
-          </a>
-          <ThemeToggle />
+          <SettingsMenu instagram={artist?.instagram} />
         </div>
       </header>
 
       <button
         type="button"
-        className={`mark ${collapsed ? "is-in" : ""}`}
+        className={`mark ${collapsed && !menuOpen ? "is-in" : ""}`}
         onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
         aria-label={t("a11y.backToTop")}
-        tabIndex={collapsed ? 0 : -1}
+        tabIndex={collapsed && !menuOpen ? 0 : -1}
       >
         <span>M</span>
       </button>
+
+      <div
+        className={`drawer-back ${menuOpen ? "is-open" : ""}`}
+        onClick={() => setMenuOpen(false)}
+        hidden={!menuOpen}
+      />
+      <aside className={`drawer ${menuOpen ? "is-open" : ""}`} aria-hidden={!menuOpen}>
+        <nav className="drawer-nav">
+          <NavLink to="/works" onClick={() => setMenuOpen(false)}>
+            {t("nav.works")}
+          </NavLink>
+          <NavLink to="/about" onClick={() => setMenuOpen(false)}>
+            {t("nav.about")}
+          </NavLink>
+          <a
+            href="#contact"
+            onClick={(event) => {
+              setMenuOpen(false);
+              scrollToContact(event);
+            }}
+          >
+            {t("nav.contacts")}
+          </a>
+        </nav>
+      </aside>
 
       <main className="main">
         <Outlet />
