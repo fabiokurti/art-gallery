@@ -18,7 +18,6 @@ export default function Home() {
   const cover = works.find((work) => work.featured) || works[0];
   const selected = works.filter((work) => work.id !== cover?.id).slice(0, 4);
   const location = localize(artist?.location);
-  const birthplace = localize(artist?.birthplace);
   const statement = localize(artist?.statement) || t("home.statement");
   const statements = [artist?.statement?.en, artist?.statement?.sq, artist?.statement?.it].filter(Boolean);
   const marquee = [...statements, ...statements];
@@ -29,7 +28,7 @@ export default function Home() {
         {cover && <img className="hero-wash" src={cover.image} alt="" />}
 
         <p className="hero-spine" aria-hidden="true">
-          marsila bitri art
+          Marsila Bitri Art
         </p>
 
         <div className="hero-copy">
@@ -84,10 +83,8 @@ export default function Home() {
           <span>{t("home.paintingsOnView")}</span>
         </div>
         <div>
-          <strong>
-            {birthplace && location ? `${birthplace} — ${location}` : location || "—"}
-          </strong>
-          <span>{t("home.fromTheCoast")}</span>
+          <strong>{location || "—"}</strong>
+          <span>{t("home.studio")}</span>
         </div>
         <div>
           <strong>{t("home.enquiries")}</strong>

@@ -9,7 +9,7 @@
 export const artist = {
   id: "marsila-bitri",
   name: "Marsila Bitri",
-  studio: "marsila bitri art",
+  studio: "Marsila Bitri Art",
   email: "hello@marsilabitri.art",
   statement: {
     en: "I paint to preserve the purest version of who I am, untouched, unaltered, and free.",

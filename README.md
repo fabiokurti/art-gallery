@@ -1,4 +1,4 @@
-# marsila bitri art
+# Marsila Bitri Art
 
 Artist site for **Marsila Bitri** — React (Vite) frontend and Node.js (Express) API.
 

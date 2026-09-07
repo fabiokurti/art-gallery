@@ -9,7 +9,7 @@ export default function Footer({ artist }) {
     <footer className="footer">
       <div className="footer-grid">
         <div>
-          <p className="footer-logo">marsila bitri art</p>
+          <p className="footer-logo">Marsila Bitri Art</p>
           <p className="footer-note">
             {t("home.eyebrow")}
             {location ? ` · ${location}` : ""}

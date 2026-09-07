@@ -95,5 +95,5 @@ app.use((error, _req, res, _next) => {
 await init();
 
 app.listen(PORT, () => {
-  console.log(`marsila bitri art API on http://localhost:${PORT}`);
+  console.log(`Marsila Bitri Art API on http://localhost:${PORT}`);
 });

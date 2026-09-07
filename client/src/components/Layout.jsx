@@ -143,7 +143,7 @@ export default function Layout() {
         </nav>
 
         <NavLink to="/" className="logo">
-          <span>marsila bitri art</span>
+          <span>Marsila Bitri Art</span>
         </NavLink>
 
         <div className="nav-actions">
