@@ -1,0 +1,10 @@
+node_modules/
+dist/
+.env
+.DS_Store
+*.log
+client/dist/
+
+# Live content and uploaded photos: this is the artist's data, not source.
+# Back it up from the server, don't commit it.
+server/data/
