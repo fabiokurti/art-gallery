@@ -1,3 +1,5 @@
+import { clearArtworks, peekArtworks, rememberArtworks } from "./worksSession.js";
+
 const API = "/api";
 
 async function request(path, options = {}) {
@@ -27,10 +29,19 @@ export function getArtist() {
 }
 
 export function getArtworks() {
-  return request("/artworks");
+  const cached = peekArtworks();
+  if (cached) return Promise.resolve(cached);
+
+  return request("/artworks").then((data) => {
+    rememberArtworks(data);
+    return data;
+  });
 }
 
 export function getArtwork(id) {
+  const cached = peekArtworks()?.find((work) => work.id === id);
+  if (cached) return Promise.resolve(cached);
+
   return request(`/artworks/${id}`);
 }
 
@@ -57,18 +68,22 @@ export function getAllArtworks() {
 }
 
 export function createArtwork(artwork) {
+  clearArtworks();
   return send("/admin/artworks", "POST", artwork);
 }
 
 export function updateArtwork(id, artwork) {
+  clearArtworks();
   return send(`/admin/artworks/${id}`, "PUT", artwork);
 }
 
 export function deleteArtwork(id) {
+  clearArtworks();
   return request(`/admin/artworks/${id}`, { method: "DELETE" });
 }
 
 export function reorderArtworks(ids) {
+  clearArtworks();
   return send("/admin/artworks/order", "POST", { ids });
 }
 

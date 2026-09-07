@@ -1,8 +1,8 @@
 import { useEffect, useRef, useState } from "react";
 
-export default function Reveal({ children, className = "", delay = 0 }) {
+export default function Reveal({ children, className = "", delay = 0, instant = false }) {
   const ref = useRef(null);
-  const [shown, setShown] = useState(false);
+  const [shown, setShown] = useState(instant);
 
   useEffect(() => {
     const node = ref.current;

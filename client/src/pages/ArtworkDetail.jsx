@@ -4,15 +4,18 @@ import { getArtwork } from "../api.js";
 import Reveal from "../components/Reveal.jsx";
 import { useI18n } from "../i18n/I18nProvider.jsx";
 import { artworkSpecs } from "../specs.js";
+import { peekArtworks } from "../worksSession.js";
 
 export default function ArtworkDetail() {
   const { id } = useParams();
   const { t, localize } = useI18n();
-  const [artwork, setArtwork] = useState(null);
+  const [artwork, setArtwork] = useState(() => peekArtworks()?.find((work) => work.id === id) || null);
   const [error, setError] = useState("");
 
   useEffect(() => {
-    setArtwork(null);
+    const cached = peekArtworks()?.find((work) => work.id === id);
+    if (!cached) setArtwork(null);
+
     getArtwork(id)
       .then(setArtwork)
       .catch((err) => setError(err.message));

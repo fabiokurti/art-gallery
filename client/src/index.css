@@ -760,6 +760,10 @@ textarea {
   animation: rise 0.9s cubic-bezier(0.22, 1, 0.36, 1) both;
 }
 
+.page-head.is-static {
+  animation: none;
+}
+
 .page-head h1 {
   font-size: clamp(2.4rem, 6vw, 4.2rem);
   font-weight: 700;
@@ -815,8 +819,10 @@ textarea {
   will-change: transform;
 }
 
-.work-link:hover .work-frame img {
-  transform: scale(1.1);
+@media (hover: hover) {
+  .work-link:hover .work-frame img {
+    transform: scale(1.1);
+  }
 }
 
 .work-view {
@@ -836,9 +842,11 @@ textarea {
   pointer-events: none;
 }
 
-.work-link:hover .work-view {
-  opacity: 1;
-  transform: translate(-50%, 0);
+@media (hover: hover) {
+  .work-link:hover .work-view {
+    opacity: 1;
+    transform: translate(-50%, 0);
+  }
 }
 
 .more-photo {
@@ -861,8 +869,10 @@ textarea {
   pointer-events: none;
 }
 
-.work-link:hover .more-photo {
-  transform: scale(1.09) rotate(8deg);
+@media (hover: hover) {
+  .work-link:hover .more-photo {
+    transform: scale(1.09) rotate(8deg);
+  }
 }
 
 .work-caption {
@@ -1378,6 +1388,10 @@ textarea {
   .social svg {
     width: 11px;
     height: 11px;
+  }
+
+  .detail-hero img {
+    animation: none;
   }
 
   .mark {

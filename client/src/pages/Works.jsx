@@ -1,19 +1,24 @@
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { getArtworks } from "../api.js";
 import ArtworkCard from "../components/ArtworkCard.jsx";
 import { useI18n } from "../i18n/I18nProvider.jsx";
+import { peekArtworks, rememberWorksScroll } from "../worksSession.js";
 
 export default function Works() {
   const { t } = useI18n();
-  const [works, setWorks] = useState([]);
+  const cached = peekArtworks();
+  const returning = useRef(Boolean(cached));
+  const [works, setWorks] = useState(cached || []);
   const [error, setError] = useState("");
-  const [loading, setLoading] = useState(true);
+  const [loading, setLoading] = useState(!cached);
 
   useEffect(() => {
     getArtworks()
       .then(setWorks)
       .catch((err) => setError(err.message))
       .finally(() => setLoading(false));
+
+    return () => rememberWorksScroll(window.scrollY);
   }, []);
 
   if (error) {
@@ -22,7 +27,7 @@ export default function Works() {
 
   return (
     <>
-      <header className="page-head">
+      <header className={`page-head ${returning.current ? "is-static" : ""}`}>
         <p className="eyebrow">{t("nav.works")}</p>
         <h1>{t("works.title")}</h1>
         <p className="page-sub">{t("works.lede")}</p>
@@ -42,7 +47,8 @@ export default function Works() {
             artwork={artwork}
             index={index + 1}
             total={works.length}
-            delay={(index % 3) * 70}
+            delay={returning.current ? 0 : (index % 3) * 70}
+            instant={returning.current}
           />
         ))}
       </section>
