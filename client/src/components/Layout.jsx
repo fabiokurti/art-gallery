@@ -36,11 +36,18 @@ export default function Layout() {
 
   useEffect(() => {
     let frame = 0;
-    let lastY = window.scrollY;
+    let lastY = Math.max(0, window.scrollY);
     let travel = 0;
-    let isLifted = false;
+    let isLifted = lastY > 88;
     let isCollapsed = false;
     let isPastHero = false;
+
+    function syncPosition() {
+      lastY = Math.max(0, window.scrollY);
+      travel = 0;
+      isCollapsed = false;
+      setCollapsed(false);
+    }
 
     function read() {
       frame = 0;
@@ -48,7 +55,6 @@ export default function Layout() {
       const delta = y - lastY;
       lastY = y;
 
-      // Wide gap between the two thresholds keeps the header from toggling itself.
       const nextLifted = isLifted ? y > 24 : y > 88;
       if (nextLifted !== isLifted) {
         isLifted = nextLifted;
@@ -63,8 +69,7 @@ export default function Layout() {
         setPastHero(nextPastHero);
       }
 
-      // Near the top the full header is always shown.
-      if (y < 140) {
+      if (y < 80) {
         travel = 0;
         if (isCollapsed) {
           isCollapsed = false;
@@ -73,17 +78,17 @@ export default function Layout() {
         return;
       }
 
-      // Only react once the reader has moved a deliberate distance one way.
-      if ((delta > 0 && travel < 0) || (delta < 0 && travel > 0)) {
-        travel = 0;
-      }
-      travel += delta;
+      // Phone scroll fires tiny +/− ticks. Ignore those so they cannot cancel
+      // a real swipe up that should bring the header back.
+      if (Math.abs(delta) < 4) return;
 
-      if (travel > 70 && !isCollapsed) {
+      travel = Math.max(-160, Math.min(160, travel + delta));
+
+      if (travel > 48 && !isCollapsed) {
         travel = 0;
         isCollapsed = true;
         setCollapsed(true);
-      } else if (travel < -70 && isCollapsed) {
+      } else if (travel < -32 && isCollapsed) {
         travel = 0;
         isCollapsed = false;
         setCollapsed(false);
@@ -94,15 +99,22 @@ export default function Layout() {
       if (!frame) frame = requestAnimationFrame(read);
     }
 
-    read();
-    window.addEventListener("scroll", onScroll, { passive: true });
+    syncPosition();
+    const settle = requestAnimationFrame(() => {
+      requestAnimationFrame(() => {
+        syncPosition();
+        window.addEventListener("scroll", onScroll, { passive: true });
+      });
+    });
+
     window.addEventListener("resize", onScroll);
     return () => {
+      cancelAnimationFrame(settle);
       window.removeEventListener("scroll", onScroll);
       window.removeEventListener("resize", onScroll);
       if (frame) cancelAnimationFrame(frame);
     };
-  }, []);
+  }, [pathname]);
 
   return (
     <div className={`site ${onAbout ? "site-about" : ""}`}>
