@@ -365,8 +365,8 @@ textarea {
 
 .brand-logo img {
   width: auto;
-  height: clamp(36px, 4.8vw, 48px);
-  max-width: min(420px, 62vw);
+  height: clamp(28px, 4.2vw, 44px);
+  max-width: min(280px, 52vw);
   object-fit: contain;
 }
 
@@ -773,6 +773,7 @@ textarea {
 .hero-slide.is-brand {
   display: grid;
   place-items: center;
+  padding: 0 5vw;
   background:
     radial-gradient(ellipse at 50% 42%, rgba(36, 48, 72, 0.9) 0%, transparent 58%),
     linear-gradient(160deg, #0c1018 0%, #151b28 48%, #0a0d14 100%);
@@ -781,13 +782,22 @@ textarea {
 .hero-brand {
   display: grid;
   place-items: center;
-  width: min(78vw, 560px);
-  padding: 1rem;
+  width: min(86vw, 560px);
+  max-width: 100%;
+  padding: 0.5rem 0 1rem;
+  box-sizing: border-box;
+}
+
+.hero-brand .brand-logo {
+  width: 100%;
 }
 
 .hero-brand .brand-logo img {
-  height: clamp(160px, 32vh, 300px);
-  max-width: min(560px, 82vw);
+  width: 100%;
+  height: auto;
+  max-width: 100%;
+  max-height: min(42vh, 300px);
+  object-fit: contain;
 }
 
 .hero-thumb.is-brand {
@@ -1771,6 +1781,26 @@ textarea {
     min-height: 100svh;
   }
 
+  .hero-brand {
+    width: min(92vw, 560px);
+  }
+
+  .hero-brand .brand-logo img {
+    max-height: min(36vh, 240px);
+  }
+
+  .hero.is-logo {
+    align-content: center;
+    justify-items: stretch;
+  }
+
+  .hero.is-logo .hero-bar {
+    position: absolute;
+    left: 5vw;
+    right: 5vw;
+    bottom: 1.4rem;
+  }
+
   .hero-title {
     font-size: clamp(1.45rem, 7vw, 2.1rem);
   }
@@ -1828,6 +1858,15 @@ textarea {
 @media (max-width: 760px) {
   :root {
     --nav-h: 78px;
+  }
+
+  .brand-logo img {
+    height: 26px;
+    max-width: min(190px, 48vw);
+  }
+
+  .hero-brand .brand-logo img {
+    max-height: min(34vh, 200px);
   }
 
   .nav {
