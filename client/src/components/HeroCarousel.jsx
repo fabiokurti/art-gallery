@@ -1,20 +1,30 @@
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { useI18n } from "../i18n/I18nProvider.jsx";
+import BrandLogo from "./BrandLogo.jsx";
 
 const INTERVAL = 7000;
+const LOGO_SLIDE = { id: "__logo__", kind: "logo" };
+
+function buildSlides(works) {
+  const paintings = works.slice(0, 7);
+  if (!paintings.length) return [LOGO_SLIDE];
+  if (paintings.length === 1) return [paintings[0], LOGO_SLIDE];
+  return [paintings[0], LOGO_SLIDE, ...paintings.slice(1)].slice(0, 8);
+}
 
 export default function HeroCarousel({ works, eyebrow, statement, lede }) {
   const { t, localize } = useI18n();
-  const slides = works.slice(0, 8);
+  const slides = buildSlides(works);
   const [index, setIndex] = useState(0);
   const [paused, setPaused] = useState(false);
   const [touchX, setTouchX] = useState(null);
   const current = slides[index];
+  const logoSlide = current?.kind === "logo";
 
   useEffect(() => {
     setIndex(0);
-  }, [slides.length]);
+  }, [works.length]);
 
   useEffect(() => {
     if (slides.length < 2 || paused) return undefined;
@@ -46,7 +56,7 @@ export default function HeroCarousel({ works, eyebrow, statement, lede }) {
 
   return (
     <section
-      className="hero"
+      className={`hero ${logoSlide ? "is-logo" : ""}`}
       onMouseEnter={() => setPaused(true)}
       onMouseLeave={() => setPaused(false)}
       onTouchStart={onTouchStart}
@@ -56,36 +66,56 @@ export default function HeroCarousel({ works, eyebrow, statement, lede }) {
         {slides.map((work, slideIndex) => (
           <div
             key={work.id}
-            className={`hero-slide ${slideIndex === index ? "is-on" : ""}`}
+            className={`hero-slide ${work.kind === "logo" ? "is-brand" : ""} ${
+              slideIndex === index ? "is-on" : ""
+            }`}
           >
-            <img src={work.image} alt="" />
+            {work.kind === "logo" ? (
+              <div className="hero-brand">
+                <BrandLogo variant="hero" />
+              </div>
+            ) : (
+              <img src={work.image} alt="" />
+            )}
           </div>
         ))}
       </div>
 
-      <div className="hero-copy">
-        {eyebrow && <p className="eyebrow">{eyebrow}</p>}
-        <h1 className="hero-title">{statement}</h1>
-        {lede && <p className="hero-lede">{lede}</p>}
-        <div className="hero-actions">
-          <Link className="btn" to="/works">
-            {t("home.viewWorks")}
-          </Link>
-          <Link className="btn ghost" to="/about">
-            {t("home.aboutArtist")}
-          </Link>
+      {!logoSlide && (
+        <div className="hero-copy">
+          {eyebrow && <p className="eyebrow">{eyebrow}</p>}
+          <h1 className="hero-title">{statement}</h1>
+          {lede && <p className="hero-lede">{lede}</p>}
+          <div className="hero-actions">
+            <Link className="btn" to="/works">
+              {t("home.viewWorks")}
+            </Link>
+            <Link className="btn ghost" to="/about">
+              {t("home.aboutArtist")}
+            </Link>
+          </div>
         </div>
-      </div>
+      )}
 
       {current && (
         <div className="hero-bar">
-          <Link to={`/works/${current.id}`} className="hero-caption">
-            <em>{t("home.nowShowing")}</em>
-            <strong>{localize(current.title)}</strong>
-            <span>
-              {String(index + 1).padStart(2, "0")} / {String(slides.length).padStart(2, "0")}
-            </span>
-          </Link>
+          {logoSlide ? (
+            <div className="hero-caption">
+              <em>{t("home.studio")}</em>
+              <strong>Marsila Bitri Art</strong>
+              <span>
+                {String(index + 1).padStart(2, "0")} / {String(slides.length).padStart(2, "0")}
+              </span>
+            </div>
+          ) : (
+            <Link to={`/works/${current.id}`} className="hero-caption">
+              <em>{t("home.nowShowing")}</em>
+              <strong>{localize(current.title)}</strong>
+              <span>
+                {String(index + 1).padStart(2, "0")} / {String(slides.length).padStart(2, "0")}
+              </span>
+            </Link>
+          )}
 
           {slides.length > 1 && (
             <div className="hero-controls">
@@ -98,7 +128,7 @@ export default function HeroCarousel({ works, eyebrow, statement, lede }) {
                     key={work.id}
                     type="button"
                     className={slideIndex === index ? "is-on" : ""}
-                    aria-label={localize(work.title)}
+                    aria-label={work.kind === "logo" ? "Marsila Bitri Art" : localize(work.title)}
                     aria-current={slideIndex === index ? "true" : undefined}
                     onClick={() => setIndex(slideIndex)}
                   />
@@ -118,11 +148,13 @@ export default function HeroCarousel({ works, eyebrow, statement, lede }) {
             <button
               key={work.id}
               type="button"
-              className={`hero-thumb ${slideIndex === index ? "is-on" : ""}`}
+              className={`hero-thumb ${work.kind === "logo" ? "is-brand" : ""} ${
+                slideIndex === index ? "is-on" : ""
+              }`}
               onClick={() => setIndex(slideIndex)}
               tabIndex={-1}
             >
-              <img src={work.image} alt="" />
+              {work.kind === "logo" ? <span className="hero-thumb-m">M</span> : <img src={work.image} alt="" />}
             </button>
           ))}
         </div>

@@ -1,6 +1,7 @@
 import { Link } from "react-router-dom";
 import { artistEmails } from "../artistEmails.js";
 import { useI18n } from "../i18n/I18nProvider.jsx";
+import BrandLogo from "./BrandLogo.jsx";
 
 export default function Footer({ artist }) {
   const { t, localize } = useI18n();
@@ -11,7 +12,9 @@ export default function Footer({ artist }) {
     <footer className="footer">
       <div className="footer-grid">
         <div>
-          <p className="footer-logo">Marsila Bitri Art</p>
+          <p className="footer-logo">
+            <BrandLogo />
+          </p>
           <p className="footer-note">
             {t("home.eyebrow")}
             {location ? ` · ${location}` : ""}

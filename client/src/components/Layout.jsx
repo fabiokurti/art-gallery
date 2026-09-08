@@ -3,6 +3,7 @@ import { NavLink, Outlet, useLocation } from "react-router-dom";
 import { getArtist } from "../api.js";
 import { useI18n } from "../i18n/I18nProvider.jsx";
 import BackToTop from "./BackToTop.jsx";
+import BrandLogo from "./BrandLogo.jsx";
 import ContactBlock from "./ContactBlock.jsx";
 import Footer from "./Footer.jsx";
 import ScrollProgress from "./ScrollProgress.jsx";
@@ -182,8 +183,8 @@ export default function Layout() {
           </nav>
         </div>
 
-        <NavLink to="/" className="logo">
-          <span>Marsila Bitri Art</span>
+        <NavLink to="/" className="logo" end aria-label="Marsila Bitri Art">
+          <BrandLogo />
         </NavLink>
 
         <div className="nav-actions">
