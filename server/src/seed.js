@@ -61,44 +61,6 @@ export const artist = {
 // photo of the canvas — that pairing is what decides the image on each entry.
 export const artworks = [
   {
-    id: "a-man-and-his-circus",
-    title: {
-      en: "A Man and His Circus",
-      sq: "Njeriu me cirk",
-      it: "L'uomo e il suo circo",
-    },
-    year: "",
-    medium: "acrylic",
-    form: "triptych",
-    dimensions: "3 × 50 × 110 cm",
-    available: true,
-    published: true,
-    image: "/media/a-man-and-his-circus.jpg",
-    images: ["/media/a-man-and-his-circus.jpg", "/media/a-man-and-his-circus-2.jpg"],
-    description: {
-      en: "The struggle and duality of modern man, caught in the trap of imitating the leader, stripped of identity and a voice of his own. A life turned into a circus: he laughs when others laugh, cries when others cry, while the “child” within remains imprisoned behind invisible bars.",
-      sq: "Lufta dhe dualiteti i njeriut të sotëm, i zënë në kurthin e imitimit të liderit, pa identitet e pa një zë të vetin. Një jetë e kaluar si në cirk: qesh kur të tjerët qeshin, qan kur të tjerët qajnë, ndërsa “fëmija” brenda tij mbetet i burgosur pas hekurave të padukshëm.",
-      it: "La lotta e la dualità dell'uomo di oggi, intrappolato nell'imitazione del leader, privato della propria identità e della propria voce. Una vita trasformata in circo: ride quando ridono gli altri, piange quando piangono gli altri, mentre il “bambino” dentro di lui resta prigioniero dietro sbarre invisibili.",
-    },
-  },
-  {
-    id: "duality-city",
-    title: { en: "Duality", sq: "Dualitet", it: "Dualità" },
-    year: "",
-    medium: "acrylic",
-    form: "",
-    dimensions: "50 × 70 cm",
-    available: true,
-    published: true,
-    image: "/media/red-and-grid.jpg",
-    images: ["/media/red-and-grid.jpg"],
-    description: {
-      en: "Amorphous beings wander through a city without memory, among empty streets and extinguished souls. We are as close as we appear, yet as distant as we feel — divided by a silent flow of lava, by a hell that slowly runs between us.",
-      sq: "Krijesa amorfe enden në një qytet pa kujtesë, mes rrugësh të zbrazura dhe shpirtrash të fikur. Jemi aq pranë sa dukemi, e aq larg sa ndihemi — të ndarë nga një llavë e heshtur, një ferr që rrjedh mes nesh.",
-      it: "Creature amorfe vagano in una città senza memoria, tra strade vuote e anime spente. Siamo vicini quanto sembriamo e lontani quanto ci sentiamo — divisi da una lava silenziosa, da un inferno che scorre lento tra noi.",
-    },
-  },
-  {
     id: "the-struggle-within",
     title: {
       en: "The Struggle Within",
@@ -112,11 +74,82 @@ export const artworks = [
     available: true,
     published: true,
     image: "/media/heart-triptych.jpg",
-    images: ["/media/heart-triptych.jpg"],
+    images: [
+      "/media/heart-triptych.jpg",
+    ],
     description: {
       en: "The eternal struggle between the heart, the mind, the gut, and the Holy Spirit.",
       sq: "Lufta e përjetshme mes zemrës, arsyes, instinktit dhe Shpirtit të Shenjtë.",
       it: "L'eterna lotta tra il cuore, la mente, l'istinto e lo Spirito Santo.",
+    },
+  },
+  {
+    id: "eclipse-of-mind-and-heart",
+    title: {
+      en: "The Eclipse of Mind and Heart upon the Cross",
+      sq: "Eklipsi i Mendjes dhe Zemrës mbi Kryq",
+      it: "L'eclissi della mente e del cuore sulla croce",
+    },
+    year: "",
+    medium: "acrylic",
+    form: "",
+    dimensions: "100 × 120 cm",
+    available: true,
+    published: true,
+    image: "/media/heart-and-branches.jpg",
+    images: [
+      "/media/heart-and-branches.jpg",
+    ],
+    description: {
+      en: "Opposing beings collide endlessly, while a deep abyss opens between them — where the mind denies what the heart still dares to feel.",
+      sq: "Zemra pulson mes degëve të një bote të brendshme, ku rrënjët, drita dhe hija ndërthuren. Dy qenie të kundërta rropaten në një përplasje të pafund, ndërsa mes tyre hapet një humnerë.",
+      it: "Esseri opposti si scontrano senza fine, mentre tra loro si apre un abisso profondo — dove la mente nega ciò che il cuore osa ancora sentire.",
+    },
+  },
+  {
+    id: "fragmented-nude",
+    title: {
+      en: "Fragmented Nude",
+      sq: "Nudo e Copëzuar",
+      it: "Nudo frammentato",
+    },
+    year: "",
+    medium: "acrylic",
+    form: "",
+    dimensions: "100 × 120 cm",
+    available: true,
+    published: true,
+    image: "/media/blue-figures.jpg",
+    images: [
+      "/media/blue-figures.jpg",
+    ],
+    description: {
+      en: "A body scattered into fragments, almost disconnected from one another. A self-reflection on the self and on the inner light that still remains present.",
+      sq: "Një trup i ndarë në fragmente, ku vetvetja humbet formën, por drita e brendshme mbetet.",
+      it: "Un corpo disperso in frammenti, quasi scollegati l'uno dall'altro. Una riflessione su di sé e sulla luce interiore che ancora resta.",
+    },
+  },
+  {
+    id: "the-rabbit-hole",
+    title: {
+      en: "The Rabbit Hole",
+      sq: "Vrima e Lepurit",
+      it: "La tana del coniglio",
+    },
+    year: "",
+    medium: "",
+    form: "",
+    dimensions: "90 × 130 cm",
+    available: true,
+    published: true,
+    image: "/media/violet-form.jpg",
+    images: [
+      "/media/violet-form.jpg",
+    ],
+    description: {
+      en: "The symmetry of the unknown, where reality loses its form and the mind follows paths with no return.",
+      sq: "Simetria e së panjohurës, ku realiteti humbet formën dhe mendja ndjek shtigje pa kthim.",
+      it: "La simmetria dell'ignoto, dove la realtà perde la forma e la mente segue sentieri senza ritorno.",
     },
   },
   {
@@ -133,7 +166,9 @@ export const artworks = [
     available: true,
     published: true,
     image: "/media/veins-and-flowers.jpg",
-    images: ["/media/veins-and-flowers.jpg"],
+    images: [
+      "/media/veins-and-flowers.jpg",
+    ],
     description: {
       en: "The heart reflects what remains silent, sealed deep within the arcade of the soul.",
       sq: "Zemra reflekton atë që hesht, të mbyllur thellë në arkadën e shpirtit.",
@@ -141,18 +176,69 @@ export const artworks = [
     },
   },
   {
+    id: "a-man-and-his-circus",
+    title: {
+      en: "A Man and His Circus",
+      sq: "Njeriu me cirk",
+      it: "L'uomo e il suo circo",
+    },
+    year: "",
+    medium: "acrylic",
+    form: "triptych",
+    dimensions: "3 × 50 × 110 cm",
+    available: true,
+    published: true,
+    image: "/media/a-man-and-his-circus.jpg",
+    images: [
+      "/media/a-man-and-his-circus.jpg",       "/media/a-man-and-his-circus-2.jpg",
+    ],
+    description: {
+      en: "The struggle and duality of modern man, caught in the trap of imitating the leader, stripped of identity and a voice of his own. A life turned into a circus: he laughs when others laugh, cries when others cry, while the “child” within remains imprisoned behind invisible bars.",
+      sq: "Lufta dhe dualiteti i njeriut të sotëm, i zënë në kurthin e imitimit të liderit, pa identitet e pa një zë të vetin. Një jetë e kaluar si në cirk: qesh kur të tjerët qeshin, qan kur të tjerët qajnë, ndërsa “fëmija” brenda tij mbetet i burgosur pas hekurave të padukshëm.",
+      it: "La lotta e la dualità dell'uomo di oggi, intrappolato nell'imitazione del leader, privato della propria identità e della propria voce. Una vita trasformata in circo: ride quando ridono gli altri, piange quando piangono gli altri, mentre il “bambino” dentro di lui resta prigioniero dietro sbarre invisibili.",
+    },
+  },
+  {
+    id: "duality-city",
+    title: {
+      en: "Duality",
+      sq: "Dualitet",
+      it: "Dualità",
+    },
+    year: "",
+    medium: "acrylic",
+    form: "",
+    dimensions: "50 × 70 cm",
+    available: true,
+    published: true,
+    image: "/media/red-and-grid.jpg",
+    images: [
+      "/media/red-and-grid.jpg",
+    ],
+    description: {
+      en: "Amorphous beings wander through a city without memory, among empty streets and extinguished souls. We are as close as we appear, yet as distant as we feel — divided by a silent flow of lava, by a hell that slowly runs between us.",
+      sq: "Krijesa amorfe enden në një qytet pa kujtesë, mes rrugësh të zbrazura dhe shpirtrash të fikur. Jemi aq pranë sa dukemi, e aq larg sa ndihemi — të ndarë nga një llavë e heshtur, një ferr që rrjedh mes nesh.",
+      it: "Creature amorfe vagano in una città senza memoria, tra strade vuote e anime spente. Siamo vicini quanto sembriamo e lontani quanto ci sentiamo — divisi da una lava silenziosa, da un inferno che scorre lento tra noi.",
+    },
+  },
+  {
     id: "intertwined",
-    title: { en: "Intertwined", sq: "Të Ndërthurur", it: "Intrecciati" },
+    title: {
+      en: "Intertwined",
+      sq: "Të Ndërthurur",
+      it: "Intrecciati",
+    },
     year: "",
     medium: "acrylic",
     form: "",
     dimensions: "",
     available: true,
     published: true,
-    // Shown as the home page cover; a portrait canvas suits that frame.
     featured: true,
     image: "/media/red-figure.jpg",
-    images: ["/media/red-figure.jpg", "/media/red-figure-2.jpg"],
+    images: [
+      "/media/red-figure.jpg",       "/media/red-figure-2.jpg",
+    ],
     description: {
       en: "A body within a body, suspended within a mind.",
       sq: "Një trup brenda një trupi, pezull në thellësinë e një mendjeje.",
@@ -173,7 +259,9 @@ export const artworks = [
     available: true,
     published: true,
     image: "/media/face-with-leaf.jpg",
-    images: ["/media/face-with-leaf.jpg"],
+    images: [
+      "/media/face-with-leaf.jpg",
+    ],
     description: {
       en: "Vanity and the endless effort to preserve outer beauty, set against the thoughts that slowly wither the beauty within — if it still exists.",
       sq: "Vaniteti dhe përpjekja e pandërprerë për të ruajtur bukurinë e jashtme, përballë përsiatjeve që venitin ngadalë bukurinë e brendshme — nëse ajo ende ekziston.",
@@ -181,46 +269,12 @@ export const artworks = [
     },
   },
   {
-    id: "eclipse-of-mind-and-heart",
-    title: {
-      en: "The Eclipse of Mind and Heart upon the Cross",
-      sq: "Eklipsi i Mendjes dhe Zemrës mbi Kryq",
-      it: "L'eclissi della mente e del cuore sulla croce",
-    },
-    year: "",
-    medium: "acrylic",
-    form: "",
-    dimensions: "100 × 120 cm",
-    available: true,
-    published: true,
-    image: "/media/heart-and-branches.jpg",
-    images: ["/media/heart-and-branches.jpg"],
-    description: {
-      en: "Opposing beings collide endlessly, while a deep abyss opens between them — where the mind denies what the heart still dares to feel.",
-      sq: "Zemra pulson mes degëve të një bote të brendshme, ku rrënjët, drita dhe hija ndërthuren. Dy qenie të kundërta rropaten në një përplasje të pafund, ndërsa mes tyre hapet një humnerë.",
-      it: "Esseri opposti si scontrano senza fine, mentre tra loro si apre un abisso profondo — dove la mente nega ciò che il cuore osa ancora sentire.",
-    },
-  },
-  {
-    id: "fragmented-nude",
-    title: { en: "Fragmented Nude", sq: "Nudo e Copëzuar", it: "Nudo frammentato" },
-    year: "",
-    medium: "acrylic",
-    form: "",
-    dimensions: "100 × 120 cm",
-    available: true,
-    published: true,
-    image: "/media/blue-figures.jpg",
-    images: ["/media/blue-figures.jpg"],
-    description: {
-      en: "A body scattered into fragments, almost disconnected from one another. A self-reflection on the self and on the inner light that still remains present.",
-      sq: "Një trup i ndarë në fragmente, ku vetvetja humbet formën, por drita e brendshme mbetet.",
-      it: "Un corpo disperso in frammenti, quasi scollegati l'uno dall'altro. Una riflessione su di sé e sulla luce interiore che ancora resta.",
-    },
-  },
-  {
     id: "duality-chance",
-    title: { en: "Duality", sq: "Dualitet", it: "Dualità" },
+    title: {
+      en: "Duality",
+      sq: "Dualitet",
+      it: "Dualità",
+    },
     year: "",
     medium: "acrylic",
     form: "",
@@ -228,7 +282,9 @@ export const artworks = [
     available: true,
     published: true,
     image: "/media/cards.jpg",
-    images: ["/media/cards.jpg"],
+    images: [
+      "/media/cards.jpg",
+    ],
     description: {
       en: "Amorphous beings adrift in the currents of chance.",
       sq: "Krijesa amorfe enden në fatin e së rastësishmes, mes formës dhe shpërbërjes.",
@@ -237,7 +293,11 @@ export const artworks = [
   },
   {
     id: "fluid-nudity",
-    title: { en: "Fluid Nudity", sq: "Nuditet Fluid", it: "Nudità fluida" },
+    title: {
+      en: "Fluid Nudity",
+      sq: "Nuditet Fluid",
+      it: "Nudità fluida",
+    },
     year: "",
     medium: "acrylic",
     form: "",
@@ -245,7 +305,9 @@ export const artworks = [
     available: true,
     published: true,
     image: "/media/blue-current.jpg",
-    images: ["/media/blue-current.jpg", "/media/blue-current-2.jpg"],
+    images: [
+      "/media/blue-current.jpg",       "/media/blue-current-2.jpg",
+    ],
     description: {
       en: "A nude figure drifting through weary eyes — a boundless form, forever dissolving.",
       sq: "Një nudo që rrëshqet mes syve të mpakur, si formë pa kufij.",
@@ -254,7 +316,11 @@ export const artworks = [
   },
   {
     id: "sea-series-sunset",
-    title: { en: "Sea Series", sq: "Seritë e Detit", it: "Serie del mare" },
+    title: {
+      en: "Sea Series",
+      sq: "Seritë e Detit",
+      it: "Serie del mare",
+    },
     year: "",
     medium: "acrylic",
     form: "",
@@ -262,7 +328,9 @@ export const artworks = [
     available: true,
     published: true,
     image: "/media/bands.jpg",
-    images: ["/media/bands.jpg"],
+    images: [
+      "/media/bands.jpg",
+    ],
     description: {
       en: "The red of sunset spills into dusk, as the sky slowly fades and the light dissolves along the horizon.",
       sq: "E kuqja e perëndimit derdhet mbi muzg, ndërsa qielli zbehet ngadalë dhe drita shuhet në horizont.",
@@ -270,26 +338,12 @@ export const artworks = [
     },
   },
   {
-    id: "the-rabbit-hole",
-    title: { en: "The Rabbit Hole", sq: "Vrima e Lepurit", it: "La tana del coniglio" },
-    year: "",
-    // The catalogue omits the medium for this one, so the specs line drops it.
-    medium: "",
-    form: "",
-    dimensions: "90 × 130 cm",
-    available: true,
-    published: true,
-    image: "/media/violet-form.jpg",
-    images: ["/media/violet-form.jpg"],
-    description: {
-      en: "The symmetry of the unknown, where reality loses its form and the mind follows paths with no return.",
-      sq: "Simetria e së panjohurës, ku realiteti humbet formën dhe mendja ndjek shtigje pa kthim.",
-      it: "La simmetria dell'ignoto, dove la realtà perde la forma e la mente segue sentieri senza ritorno.",
-    },
-  },
-  {
     id: "sea-series-depth",
-    title: { en: "Sea Series", sq: "Seritë e Detit", it: "Serie del mare" },
+    title: {
+      en: "Sea Series",
+      sq: "Seritë e Detit",
+      it: "Serie del mare",
+    },
     year: "",
     medium: "acrylic",
     form: "",
@@ -297,7 +351,9 @@ export const artworks = [
     available: true,
     published: true,
     image: "/media/horizon.jpg",
-    images: ["/media/horizon.jpg", "/media/horizon-2.jpg"],
+    images: [
+      "/media/horizon.jpg",       "/media/horizon-2.jpg",
+    ],
     description: {
       en: "A deep sea breathes among the waves, beneath the silence of a tranquil sky.",
       sq: "Një det i thellë frymon mbi dallgë, nën heshtjen e një qielli të qetë.",
@@ -305,10 +361,12 @@ export const artworks = [
     },
   },
   {
-    // The catalogue closes with "there is also a blue nude, 90x130" and nothing
-    // more, so the title here is a placeholder and there is no text yet.
     id: "blue-nude",
-    title: { en: "Blue Nude", sq: "Nudo blu", it: "Nudo blu" },
+    title: {
+      en: "Blue Nude",
+      sq: "Nudo blu",
+      it: "Nudo blu",
+    },
     year: "",
     medium: "",
     form: "",
@@ -316,7 +374,9 @@ export const artworks = [
     available: true,
     published: true,
     image: "/media/seated-figure.jpg",
-    images: ["/media/seated-figure.jpg"],
+    images: [
+      "/media/seated-figure.jpg",
+    ],
     description: "",
   },
 ];

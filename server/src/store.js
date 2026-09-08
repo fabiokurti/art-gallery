@@ -13,6 +13,13 @@ import { artist as seedArtist, artworks as seedArtworks } from "./seed.js";
 
 const STUDIO_EMAILS = ["hello@marsilabitri.art", "contact@marsilabitri.art"];
 const STUDIO_INSTAGRAM = "https://www.instagram.com/marsilabitri.art/";
+const LEAD_ARTWORKS = [
+  "the-struggle-within",
+  "eclipse-of-mind-and-heart",
+  "fragmented-nude",
+  "the-rabbit-hole",
+  "arcade-of-veins",
+];
 
 const here = path.dirname(fileURLToPath(import.meta.url));
 
@@ -88,6 +95,27 @@ function ensureInstagram(artist) {
   return true;
 }
 
+function ensureLeadArtworks(content) {
+  const artworks = content.artworks;
+  if (!Array.isArray(artworks) || artworks.length < LEAD_ARTWORKS.length) return false;
+
+  const already =
+    LEAD_ARTWORKS.every((id, index) => artworks[index]?.id === id);
+  if (already) return false;
+
+  const byId = new Map(artworks.map((work) => [work.id, work]));
+  const head = [];
+  for (const id of LEAD_ARTWORKS) {
+    const work = byId.get(id);
+    if (!work) return false;
+    head.push(work);
+    byId.delete(id);
+  }
+
+  content.artworks = [...head, ...artworks.filter((work) => byId.has(work.id))];
+  return true;
+}
+
 // A fresh install has no data directory, so the first boot lays down the seed
 // content and the photos that ship with the repo. This is what makes deploying
 // to a new server a matter of starting the process.
@@ -102,7 +130,10 @@ export async function init() {
     const emailChanged = ensureStudioEmails(content.artist);
     const instagramChanged = ensureInstagram(content.artist);
     const circusChanged = ensureCircusPanels(content);
-    if (emailChanged || instagramChanged || circusChanged) await writeJson(CONTENT_FILE, content, true);
+    const leadChanged = ensureLeadArtworks(content);
+    if (emailChanged || instagramChanged || circusChanged || leadChanged) {
+      await writeJson(CONTENT_FILE, content, true);
+    }
   }
 
   inquiries = (await readJson(INQUIRY_FILE)) || [];
