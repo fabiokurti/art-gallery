@@ -54,7 +54,7 @@ export const artist = {
     sq: "Tiranë",
     it: "Tirana",
   },
-  instagram: "https://instagram.com/",
+  instagram: "https://www.instagram.com/marsilabitri.art/",
 };
 
 // Order follows Marsila's own catalogue document, which pairs every text with a

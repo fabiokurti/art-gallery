@@ -92,7 +92,7 @@ export default function SettingsMenu({ instagram }) {
 
         <a
           className="settings-row"
-          href={instagram || "https://instagram.com/"}
+          href={instagram || "https://www.instagram.com/marsilabitri.art/"}
           target="_blank"
           rel="noreferrer"
         >

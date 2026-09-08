@@ -12,6 +12,7 @@ import { fileURLToPath } from "node:url";
 import { artist as seedArtist, artworks as seedArtworks } from "./seed.js";
 
 const STUDIO_EMAILS = ["hello@marsilabitri.art", "contact@marsilabitri.art"];
+const STUDIO_INSTAGRAM = "https://www.instagram.com/marsilabitri.art/";
 
 const here = path.dirname(fileURLToPath(import.meta.url));
 
@@ -76,6 +77,17 @@ function ensureStudioEmails(artist) {
   return true;
 }
 
+function ensureInstagram(artist) {
+  const current = String(artist.instagram || "").trim();
+  if (current === STUDIO_INSTAGRAM) return false;
+  // Only fill the empty placeholder; leave a custom URL alone.
+  if (current && current !== "https://instagram.com/" && current !== "https://www.instagram.com/") {
+    return false;
+  }
+  artist.instagram = STUDIO_INSTAGRAM;
+  return true;
+}
+
 // A fresh install has no data directory, so the first boot lays down the seed
 // content and the photos that ship with the repo. This is what makes deploying
 // to a new server a matter of starting the process.
@@ -88,8 +100,9 @@ export async function init() {
     await writeJson(CONTENT_FILE, content);
   } else {
     const emailChanged = ensureStudioEmails(content.artist);
+    const instagramChanged = ensureInstagram(content.artist);
     const circusChanged = ensureCircusPanels(content);
-    if (emailChanged || circusChanged) await writeJson(CONTENT_FILE, content, true);
+    if (emailChanged || instagramChanged || circusChanged) await writeJson(CONTENT_FILE, content, true);
   }
 
   inquiries = (await readJson(INQUIRY_FILE)) || [];
