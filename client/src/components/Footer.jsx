@@ -1,9 +1,11 @@
 import { Link } from "react-router-dom";
+import { artistEmails } from "../artistEmails.js";
 import { useI18n } from "../i18n/I18nProvider.jsx";
 
 export default function Footer({ artist }) {
   const { t, localize } = useI18n();
   const location = localize(artist?.location);
+  const emails = artistEmails(artist);
 
   return (
     <footer className="footer">
@@ -21,7 +23,11 @@ export default function Footer({ artist }) {
           <a href="#contact">{t("nav.contacts")}</a>
         </nav>
         <div className="footer-links">
-          {artist?.email && <a href={`mailto:${artist.email}`}>{artist.email}</a>}
+          {emails.map((address) => (
+            <a key={address} href={`mailto:${address}`}>
+              {address}
+            </a>
+          ))}
           {artist?.instagram && (
             <a href={artist.instagram} target="_blank" rel="noreferrer">
               Instagram

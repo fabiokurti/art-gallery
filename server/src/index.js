@@ -1,6 +1,7 @@
 import cors from "cors";
 import express from "express";
 import admin from "./admin.js";
+import { sendInquiryMail } from "./mail.js";
 import { getArtist, getArtworks, init, updateInquiries, UPLOAD_DIR } from "./store.js";
 
 const app = express();
@@ -74,6 +75,12 @@ app.post("/api/inquiries", async (req, res, next) => {
       draft.push(entry);
       return entry;
     });
+
+    try {
+      await sendInquiryMail(inquiry);
+    } catch (error) {
+      console.error("Could not email the inquiry:", error);
+    }
 
     res.status(201).json({ ok: true, inquiry });
   } catch (error) {

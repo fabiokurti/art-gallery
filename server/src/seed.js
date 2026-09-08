@@ -11,6 +11,7 @@ export const artist = {
   name: "Marsila Bitri",
   studio: "Marsila Bitri Art",
   email: "hello@marsilabitri.art",
+  emails: ["hello@marsilabitri.art", "contact@marsilabitri.art"],
   statement: {
     en: "I paint to preserve the purest version of who I am, untouched, unaltered, and free.",
     sq: "Unë pikturoj për të qenë vetvetja e pacenuar.",
@@ -72,8 +73,8 @@ export const artworks = [
     dimensions: "3 × 50 × 110 cm",
     available: true,
     published: true,
-    image: "/media/carousel.jpg",
-    images: ["/media/carousel.jpg", "/media/carousel-2.jpg"],
+    image: "/media/a-man-and-his-circus.jpg",
+    images: ["/media/a-man-and-his-circus.jpg", "/media/a-man-and-his-circus-2.jpg"],
     description: {
       en: "The struggle and duality of modern man, caught in the trap of imitating the leader, stripped of identity and a voice of his own. A life turned into a circus: he laughs when others laugh, cries when others cry, while the “child” within remains imprisoned behind invisible bars.",
       sq: "Lufta dhe dualiteti i njeriut të sotëm, i zënë në kurthin e imitimit të liderit, pa identitet e pa një zë të vetin. Një jetë e kaluar si në cirk: qesh kur të tjerët qeshin, qan kur të tjerët qajnë, ndërsa “fëmija” brenda tij mbetet i burgosur pas hekurave të padukshëm.",

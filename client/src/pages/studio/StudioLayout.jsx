@@ -58,6 +58,16 @@ export default function StudioLayout() {
           {t("studio.brand")}
         </Link>
         <div className="studio-bar-actions">
+          {authed && (
+            <>
+              <Link to="/studio" className="studio-link">
+                {t("studio.works")}
+              </Link>
+              <Link to="/studio/messages" className="studio-link">
+                {t("studio.messages")}
+              </Link>
+            </>
+          )}
           <Link to="/" className="studio-link">
             {t("studio.viewSite")}
           </Link>

@@ -229,6 +229,9 @@ router.put("/artist", async (req, res, next) => {
 
       if (typeof body.name === "string") artist.name = body.name.trim();
       if (typeof body.email === "string") artist.email = body.email.trim();
+      if (Array.isArray(body.emails)) {
+        artist.emails = body.emails.map((value) => String(value).trim()).filter(Boolean);
+      }
       if (typeof body.instagram === "string") artist.instagram = body.instagram.trim();
 
       for (const field of ["statement", "intro"]) {

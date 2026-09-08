@@ -11,6 +11,8 @@ import path from "node:path";
 import { fileURLToPath } from "node:url";
 import { artist as seedArtist, artworks as seedArtworks } from "./seed.js";
 
+const STUDIO_EMAILS = ["hello@marsilabitri.art", "contact@marsilabitri.art"];
+
 const here = path.dirname(fileURLToPath(import.meta.url));
 
 // Set DATA_DIR on the server to keep content on a path that survives deploys.
@@ -47,6 +49,33 @@ async function readJson(file) {
   }
 }
 
+function ensureCircusPanels(content) {
+  const work = content.artworks?.find((entry) => entry.id === "a-man-and-his-circus");
+  if (!work) return false;
+  if (work.image === "/media/a-man-and-his-circus.jpg") return false;
+  work.image = "/media/a-man-and-his-circus.jpg";
+  work.images = [
+    "/media/a-man-and-his-circus.jpg",
+    "/media/a-man-and-his-circus-2.jpg",
+  ];
+  return true;
+}
+
+function ensureStudioEmails(artist) {
+  const current = Array.isArray(artist.emails)
+    ? artist.emails.map((value) => String(value).trim()).filter(Boolean)
+    : [];
+  const next = [...new Set([...STUDIO_EMAILS, ...current, artist.email].filter(Boolean))];
+  const same =
+    current.length === next.length && current.every((value, index) => value === next[index]);
+
+  if (same && artist.email === STUDIO_EMAILS[0]) return false;
+
+  artist.email = STUDIO_EMAILS[0];
+  artist.emails = next;
+  return true;
+}
+
 // A fresh install has no data directory, so the first boot lays down the seed
 // content and the photos that ship with the repo. This is what makes deploying
 // to a new server a matter of starting the process.
@@ -57,6 +86,10 @@ export async function init() {
   if (!content) {
     content = { artist: seedArtist, artworks: seedArtworks };
     await writeJson(CONTENT_FILE, content);
+  } else {
+    const emailChanged = ensureStudioEmails(content.artist);
+    const circusChanged = ensureCircusPanels(content);
+    if (emailChanged || circusChanged) await writeJson(CONTENT_FILE, content, true);
   }
 
   inquiries = (await readJson(INQUIRY_FILE)) || [];

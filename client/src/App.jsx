@@ -5,6 +5,7 @@ import ArtworkDetail from "./pages/ArtworkDetail.jsx";
 import Home from "./pages/Home.jsx";
 import StudioArtwork from "./pages/studio/StudioArtwork.jsx";
 import StudioLayout from "./pages/studio/StudioLayout.jsx";
+import StudioMessages from "./pages/studio/StudioMessages.jsx";
 import StudioWorks from "./pages/studio/StudioWorks.jsx";
 import Works from "./pages/Works.jsx";
 
@@ -13,6 +14,7 @@ export default function App() {
     <Routes>
       <Route path="/studio" element={<StudioLayout />}>
         <Route index element={<StudioWorks />} />
+        <Route path="messages" element={<StudioMessages />} />
         <Route path="new" element={<StudioArtwork />} />
         <Route path=":id" element={<StudioArtwork />} />
       </Route>

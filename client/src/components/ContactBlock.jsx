@@ -1,9 +1,11 @@
 import { useState } from "react";
 import { sendInquiry } from "../api.js";
+import { artistEmails } from "../artistEmails.js";
 import { useI18n } from "../i18n/I18nProvider.jsx";
 
 export default function ContactBlock({ artist }) {
   const { t } = useI18n();
+  const emails = artistEmails(artist);
   const [status, setStatus] = useState("");
   const [error, setError] = useState("");
   const [sending, setSending] = useState(false);
@@ -37,12 +39,16 @@ export default function ContactBlock({ artist }) {
         <h2>{t("contact.title")}</h2>
         <p className="page-sub">
           {t("contact.lede")}
-          {artist?.email ? ` ${t("contact.emailHint")}` : ""}
+          {emails.length > 0 ? ` ${t("contact.emailHint")}` : ""}
         </p>
-        {artist?.email && (
-          <a className="contact-mail" href={`mailto:${artist.email}`}>
-            {artist.email}
-          </a>
+        {emails.length > 0 && (
+          <div className="contact-mails">
+            {emails.map((address) => (
+              <a key={address} className="contact-mail" href={`mailto:${address}`}>
+                {address}
+              </a>
+            ))}
+          </div>
         )}
       </div>
       <form className="form" onSubmit={submit}>
